@@ -41,19 +41,19 @@
 
         <div class="row">
           <div class="col-md-4 gap-right-md gap-bottom-normal">
-            <div class="form-input">
+            <div class="form-elem input-box">
               <input type="text" placeholder="nom*" value="" required>
             </div>
           </div>
           
           <div class="col-md-4 gap-left-md gap-right-md gap-bottom-normal">
-            <div class="form-input">
+            <div class="form-elem input-box">
               <input type="text" placeholder="prénom*" value="" required>
             </div>
           </div>
           
           <div class="col-md-4 gap-left-md gap-bottom-normal">
-            <div class="form-input">
+            <div class="form-elem input-box">
               <input type="text" placeholder="fonction" value="">
             </div>
           </div>
@@ -61,19 +61,19 @@
 
         <div class="row gap-bottom-lg">
           <div class="col-md-4 gap-right-md gap-bottom-normal">
-            <div class="form-input">
+            <div class="form-elem input-box">
               <input type="email" placeholder="mail*" value="" required>
             </div>
           </div>
           
           <div class="col-md-4 gap-left-md gap-right-md gap-bottom-normal">
-            <div class="form-input">
+            <div class="form-elem input-box">
               <input type="text" placeholder="téléphone*" value="" required>
             </div>
           </div>
           
           <div class="col-md-4 gap-left-md gap-bottom-normal">
-            <div class="form-input">
+            <div class="form-elem input-box">
               <input type="text" placeholder="statut" value="">
             </div>
           </div>
@@ -83,14 +83,14 @@
           <span class="number">2</span>Vous souhaitez que nous vous apportons un conseil, quel est votre message :
         </p>
 
-        <div class="form-input gap-bottom-lg">
+        <div class="form-elem textarea-box gap-bottom-lg">
           <textarea rows="5" placeholder="Détail sur le poste, le profil recherché, les enjeux et contexte du poste..."></textarea>
         </div>
 
         <p class="required-description gap-bottom-lg"><span class="highlight">*</span>Champs obligatoires</p>
 
         <div class="text-center gap-bottom-lg">
-          <div class="form-input form-submit gap-bottom-lg">
+          <div class="form-elem form-submit gap-bottom-lg">
             <input type="submit" value="envoyer">
           </div>
         </div>
