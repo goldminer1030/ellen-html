@@ -13,6 +13,9 @@ hook('cms_styles_add', array(
 	hook('path_root').'static/css/bootstrap.patch.css',
 	hook('path_root').'static/css/slidesheep.css',
 	hook('path_root').'static/css/style.css',
+	hook('path_root').'static/vendors/jquery-custom-select/css/jquery.jscrollpane.css',
+	hook('path_root').'static/vendors/jquery-custom-select/css/customSelectBox.css',
+	hook('path_root').'static/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
 	hook('path_root').'static/css/main-dev.css'
 ));
 
@@ -24,6 +27,11 @@ hook('cms_scripts_add', array(
 	hook('path_root').'static/js/cimagex.alpha.js',
 	hook('path_root').'static/node_modules/yengin/yengin.js',
 	hook('path_root').'static/js/main.js?d='.time(),
+	hook('path_root').'static/vendors/jquery-custom-select/js/jScrollPane.js',
+	hook('path_root').'static/vendors/jquery-custom-select/js/jquery.mousewheel.js',
+	hook('path_root').'static/vendors/jquery-custom-select/js/SelectBox.js',
+	hook('path_root').'static/bower_components/moment/min/moment.min.js',
+	hook('path_root').'static/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
 	hook('path_root').'static/js/main-dev.js'
 ));
 
