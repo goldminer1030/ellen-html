@@ -63,7 +63,7 @@
 
     </div>
 
-    <div class="tab top-tab top-active" id="top-active" data-active="0">
+    <div class="tab top-tab top-active" id="top-active" data-active="2">
       <ul class="boxed-flex-sm">
         <li>
           <a href="#tab-top-top-active-1">

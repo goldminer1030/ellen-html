@@ -1,5 +1,5 @@
 
-  <div class="page-content bg-light-gray">
+  <div class="page-content bg-light-gray gap-top-header">
     
     <div class="container-fluid header-smh-bar">
       <div class="row smartsearch">

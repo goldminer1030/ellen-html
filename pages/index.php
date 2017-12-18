@@ -16,6 +16,8 @@ hook('cms_styles_add', array(
 	hook('path_root').'static/vendors/jquery-custom-select/css/jquery.jscrollpane.css',
 	hook('path_root').'static/vendors/jquery-custom-select/css/customSelectBox.css',
 	hook('path_root').'static/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
+	hook('path_root').'static/bower_components/responsive-tabs/css/responsive-tabs.css',
+	hook('path_root').'static/bower_components/responsive-tabs/css/style.css',
 	hook('path_root').'static/css/main-dev.css'
 ));
 
@@ -32,6 +34,9 @@ hook('cms_scripts_add', array(
 	hook('path_root').'static/vendors/jquery-custom-select/js/SelectBox.js',
 	hook('path_root').'static/bower_components/moment/min/moment.min.js',
 	hook('path_root').'static/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+	hook('path_root').'static/bower_components/responsive-tabs/js/jquery.responsiveTabs.min.js',
+	hook('path_root').'static/vendors/gmaps/gmaps.min.js',
+	 'http://maps.google.com/maps/api/js?key=AIzaSyB8Gzrt-0MU9T1yNq-UUag7dINwnGcUATA',
 	hook('path_root').'static/js/main-dev.js'
 ));
 

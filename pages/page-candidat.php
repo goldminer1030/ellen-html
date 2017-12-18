@@ -117,7 +117,7 @@
         </div>
       </div><!-- ./row -->
 
-      <div class="row boxed-flex-sm">
+      <div class="row boxed-flex-sm gap-bottom-normal">
         <div class="col-md-4 boxed-flex-sm">
           <div class="boxed-content small-gap">
             <div class="boxed-wrapper bg-red">
