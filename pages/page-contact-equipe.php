@@ -70,9 +70,10 @@
           </div>
 
           <div class="col-md-4 gap-left-md gap-bottom-normal">
-            <div class="department-location bg-dark-red">
+            <div class="department-location bg-dark-red text-center">
               <p class="location-title gap-bottom-normal">localisation actuelle</p>
-              <img src="static/images/department-map.png" alt="department map" />
+              
+              <div id="map-holder"></div>
               <div class="form-elem input-box">
                 <input type="text" placeholder="département" value="">
               </div>

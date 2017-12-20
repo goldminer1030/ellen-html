@@ -6,6 +6,8 @@ hook('cms_styles_add', array(
 	// hook('path_root').'static/node_modules/owlcarousel/owl-carousel/owl.carousel.css',
 	// hook('path_root').'static/node_modules/owlcarousel/owl-carousel/owl.theme.css',
 	// hook('path_root').'static/node_modules/owlcarousel/owl-carousel/owl.transitions.css',
+	hook('path_root').'static/bower_components/owl.carousel/src/css/owl.carousel.min.css',
+	hook('path_root').'static/bower_components/owl.carousel/src/css/owl.theme.default.min.css',
 	// hook('path_root').'static/css/flipbook.css',
 	hook('path_root').'static/css/bebas.font.css',
 	hook('path_root').'static/css/amplify.font.css',
@@ -25,7 +27,7 @@ hook('cms_scripts_add', array(
 	hook('path_root').'melba.errorlevel.js?d='.time(),
 	hook('path_root').'static/bower_components/jquery/dist/jquery.min.js',
 	hook('path_root').'static/vendors/jquery-ui-1.12.1/jquery-ui.js',
-	// hook('path_root').'static/node_modules/owlcarousel/owl-carousel/owl.carousel.js',
+	hook('path_root').'static/bower_components/owl.carousel/src/js/owl.carousel.js',
 	hook('path_root').'static/js/cimagex.alpha.js',
 	hook('path_root').'static/node_modules/yengin/yengin.js',
 	hook('path_root').'static/js/main.js?d='.time(),
@@ -35,8 +37,11 @@ hook('cms_scripts_add', array(
 	hook('path_root').'static/bower_components/moment/min/moment.min.js',
 	hook('path_root').'static/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
 	hook('path_root').'static/bower_components/responsive-tabs/js/jquery.responsiveTabs.min.js',
+	hook('path_root').'static/bower_components/d3/d3.min.js',
+	hook('path_root').'static/bower_components/topojson/topojson.min.js',
 	hook('path_root').'static/vendors/gmaps/gmaps.min.js',
 	 'http://maps.google.com/maps/api/js?key=AIzaSyB8Gzrt-0MU9T1yNq-UUag7dINwnGcUATA',
+	hook('path_root').'static/js/france-map.js',
 	hook('path_root').'static/js/main-dev.js'
 ));
 

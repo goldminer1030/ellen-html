@@ -16,8 +16,57 @@
   <div class="team-members">
     <p class="dream-team">La fine équipe</p>
     
-    <div class="team-member-carousel">
-      <img src="static/images/dream-team.png" class="img-responsive" alt="team member" />
+    <div class="owl-carousel">
+      <div class="team-member">
+        <img src="static/images/teammate-01.jpg" class="portrait" alt="portrait" />
+        <p class="name">François</p>
+        <p class="position bg-pink">Partenaire</p>
+      </div>
+      <div class="team-member">
+        <img src="static/images/teammate-02.jpg" class="portrait" alt="portrait" />
+        <p class="name">Geoffroy</p>
+        <p class="position bg-pink">Partenaire d’Ellen</p>
+      </div>
+      <div class="team-member">
+        <img src="static/images/teammate-03.jpg" class="portrait" alt="portrait" />
+        <p class="name">Marion</p>
+        <p class="position bg-dark-red">Fondatrice</p>
+      </div>
+      <div class="team-member">
+        <img src="static/images/teammate-04.jpg" class="portrait" alt="portrait" />
+        <p class="name">Corinne</p>
+        <p class="position bg-green">Partenaire d’Ellen</p>
+      </div>
+      <div class="team-member">
+        <img src="static/images/teammate-05.jpg" class="portrait" alt="portrait" />
+        <p class="name">Jea</p>
+        <p class="position bg-pink">Partenaire</p>
+      </div>
+      <div class="team-member">
+        <img src="static/images/teammate-01.jpg" class="portrait" alt="portrait" />
+        <p class="name">François</p>
+        <p class="position bg-pink">Partenaire</p>
+      </div>
+      <div class="team-member">
+        <img src="static/images/teammate-02.jpg" class="portrait" alt="portrait" />
+        <p class="name">Geoffroy</p>
+        <p class="position bg-pink">Partenaire d’Ellen</p>
+      </div>
+      <div class="team-member">
+        <img src="static/images/teammate-03.jpg" class="portrait" alt="portrait" />
+        <p class="name">Marion</p>
+        <p class="position bg-dark-red">Fondatrice</p>
+      </div>
+      <div class="team-member">
+        <img src="static/images/teammate-04.jpg" class="portrait" alt="portrait" />
+        <p class="name">Corinne</p>
+        <p class="position bg-green">Partenaire d’Ellen</p>
+      </div>
+      <div class="team-member">
+        <img src="static/images/teammate-05.jpg" class="portrait" alt="portrait" />
+        <p class="name">Jea</p>
+        <p class="position bg-pink">Partenaire</p>
+      </div>
     </div>
 
     <div class="join-team-wrapper">
