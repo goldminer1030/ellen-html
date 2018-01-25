@@ -1,12 +1,16 @@
+<?php
+$post = hook('macro', '$:/view/post');
+$meta = hook('get_all_meta_post', $post->getId());
+?>
   <div class="header-title-container">
 		<div class="entete">
 			<div class="flotaison-container">
 				<div class="textOver text0">
           la fine équipe <br />
-					<span class="subtitle">Ellen Scott Career ?</span>
+					<span class="subtitle">Ellen Scott Career</span>
 				</div>
 				<div class="background-image">
-					<img src="static/images/gauche.jpg" class="cimagex" alt="header title"/>
+					<img src="<?php echo hook('decodeRouteImage', array($post->getThemePicture(), 'large')); ?>" class="cimagex" alt="header title" alt="<?php echo hook('get_last_alt_image'); ?>" />
 				</div>
 			</div>
 		</div>
@@ -17,73 +21,34 @@
     <p class="dream-team">La fine équipe</p>
     
     <div class="owl-carousel">
+      <?php
+      $fineEquipe = hook('get_custom_post', array('diapoequipe', 'view_all_post_enable'));
+      foreach($fineEquipe as $collaborateur) {
+      ?>
       <div class="team-member">
-        <img src="static/images/teammate-01.jpg" class="portrait" alt="portrait" />
-        <p class="name">François</p>
-        <p class="position bg-pink">Partenaire</p>
+        <div class="portrait">
+          <img src="<?php echo hook('decodeRouteImage', array($collaborateur->getThemePicture(), 'large')); ?>" class="cimagex" alt="blog image" />
+        </div>
+        <p class="name"><?php echo $collaborateur->getTitle(); ?></p>
+        <p class="position bg-dark-red"><?php echo $collaborateur->getResume(); ?></p>
+        <?php if(strlen($collaborateur->getWebSite())) { ?>
+          <div class="linkedin"><a href="<?php echo $collaborateur->getWebSite(); ?>" target="_blank" class="fico fico-follow fico-linkedin"></a></div>
+        <?php } ?>
       </div>
-      <div class="team-member">
-        <img src="static/images/teammate-02.jpg" class="portrait" alt="portrait" />
-        <p class="name">Geoffroy</p>
-        <p class="position bg-pink">Partenaire d’Ellen</p>
-      </div>
-      <div class="team-member">
-        <img src="static/images/teammate-03.jpg" class="portrait" alt="portrait" />
-        <p class="name">Marion</p>
-        <p class="position bg-dark-red">Fondatrice</p>
-      </div>
-      <div class="team-member">
-        <img src="static/images/teammate-04.jpg" class="portrait" alt="portrait" />
-        <p class="name">Corinne</p>
-        <p class="position bg-green">Partenaire d’Ellen</p>
-      </div>
-      <div class="team-member">
-        <img src="static/images/teammate-05.jpg" class="portrait" alt="portrait" />
-        <p class="name">Jea</p>
-        <p class="position bg-pink">Partenaire</p>
-      </div>
-      <div class="team-member">
-        <img src="static/images/teammate-01.jpg" class="portrait" alt="portrait" />
-        <p class="name">François</p>
-        <p class="position bg-pink">Partenaire</p>
-      </div>
-      <div class="team-member">
-        <img src="static/images/teammate-02.jpg" class="portrait" alt="portrait" />
-        <p class="name">Geoffroy</p>
-        <p class="position bg-pink">Partenaire d’Ellen</p>
-      </div>
-      <div class="team-member">
-        <img src="static/images/teammate-03.jpg" class="portrait" alt="portrait" />
-        <p class="name">Marion</p>
-        <p class="position bg-dark-red">Fondatrice</p>
-      </div>
-      <div class="team-member">
-        <img src="static/images/teammate-04.jpg" class="portrait" alt="portrait" />
-        <p class="name">Corinne</p>
-        <p class="position bg-green">Partenaire d’Ellen</p>
-      </div>
-      <div class="team-member">
-        <img src="static/images/teammate-05.jpg" class="portrait" alt="portrait" />
-        <p class="name">Jea</p>
-        <p class="position bg-pink">Partenaire</p>
-      </div>
+      <?php } ?>
     </div>
 
     <div class="join-team-wrapper">
-      <a class="btn-join-team">Rejoindre la fine équipe ></a>
+      <a href="<?php echo hook('path_root').hook('search_theme_route_by_id', array('pages', 16)).'?mode=Rejoindre+la+fine+équipe'; ?>" class="btn-join-team">Rejoindre la fine équipe ></a>
     </div>
   </div>
 
   <!-- Where do we come from -->
   <div class="our-history">
-    <p class="where-we">D’où venons-nous ?</p>
+    <div class="where-we"><?php if(preg_match('#<h[0-6][^>]*>([^<]+)</h2>#i', $post->getContent(), $regex)) { echo $regex[1]; } ?></div>
 
     <div class="our-history-wrapper">
-      <p class="history-text">Néé en 2017, le <strong>cabinet de recrutement</strong> Ellen Scott Career est l'un des rares cabinets <strong>épendants français</strong> à se développer
-      par un <strong>partenariat avec un cabinet de conseil en stratégie</strong> permettant de concilier <span class="highlight">l'expertise métier des consultants d'Ellen
-      Scott Career à un savoir-faire opérationnel</span> (executive, finance, ressources humaines, business, IT, supply chain et production).<br><br>
-      Ellen Scott Career fédère candidats et employeurs autour d'une philosophie commune: <strong>recruter la bonne personne, au bon poste
-      <span class="highlight">ET</span> au bon moment.</strong></p>
+      <div class="history-text"><?php echo hook('cms_html', hook('decodeRouteImage', array(preg_replace('#<h[0-6][^>]*>[^<]+</h[0-6]>#i', '', $post->getContent()), 'medium'))); ?></div>
 
       <div class="history-image">
         <img src="static/images/where-do-we-come-from.jpg" alt="our history" />
@@ -95,21 +60,14 @@
   <div class="why-ellen-container">
     <div class="entete">
       <div class="flotaison-container">
-        <p class="why-ellen-scott">Pourquoi Ellen Scott ?</p>
+        <?php $content = (isset($meta['meta_x_pourquoi_1']) ? $meta['meta_x_pourquoi_1'] : ''); ?>
+        <div class="why-ellen-scott"><?php if(preg_match('#<h[0-6][^>]*>([^<]+)</h2>#i', $content, $regex)) { echo $regex[1]; } ?></div>
 
-        <p class="glass-board why-ellen-description1">Véritable <span class="highlight">passionnée</span> par les chevaux, j'ai eu le privilège de pouvoir faire de l'équitation dès mon plus jeune âge.<br><br>Lors
-        d'un <strong>concours de sauts d'obstacles</strong>, j'ai eu l'honneur de rencontrer <strong>Ellen Scott. Cette cavalière</strong>, faisant preuve d'une <span class="highlight">grande
-        humilité</span>, représentait, à mes yeux, un <strong>duo impressionnant avec son cheval</strong>.<br><br>Grâce à la représentation que j'en avais, elle
-        m'a permis de suivre son exemple et d'<span class="highlight">évoluer</span> dans le monde équestre.<br><br><strong>L'équitation est une discipline très fine: En couple
-        avec sa monture,</strong> il faut savoir être <span class="highlight">un leader</span> afin que le cheval ait <span class="highlight">confiance</span> en nous. Nos petits tracas du quotidien doivent
-        être mis de côté sinon c'est la chute assurée !</p>
+        <div class="glass-board why-ellen-description1"><?php echo hook('cms_html', hook('decodeRouteImage', array(preg_replace('#<h[0-6][^>]*>[^<]+</h[0-6]>#i', '', $content), 'medium'))); ?></div>
 
+        <?php $content = (isset($meta['meta_x_pourquoi_2']) ? $meta['meta_x_pourquoi_2'] : ''); ?>
         <div class="glass-board why-ellen-description2">
-          <p>Il faut sans cesse <span class="highlight">se remettre en question</span>, <strong>aimer et respecter l'animal car le cheval ressent nos émotions .</strong><br><br>D'ailleurs,
-        aujourd'hui, de nombreuses entreprises proposent des stages d'éthologie à leurs collaborateurs (initiés ou non à l'équitation)
-        afin d'apprendre à se connaître et de <span class="highlight">développer ses compétences humaines et managériales.</span><br><br>A mes yeux, Ellen Scott représente
-        tout cela. Elle a eu un rôle très important dans <span class="highlight">la réalisation de mon "Moi"</span>.<br><br><strong>Nous pouvons tous devenir la Ellen Scott de
-        quelqu'un!</strong></p>
+          <div><?php echo hook('cms_html', hook('decodeRouteImage', array(preg_replace('#<h[0-6][^>]*>[^<]+</h[0-6]>#i', '', $content), 'medium'))); ?></div>
         <p class="marion">Marion</p>
         </div>
 

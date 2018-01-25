@@ -1,6 +1,7 @@
 			<div class="actucareer">
 				<h2>Carrière</h2>
 				<div class="container-fluid">
+					<?php if(isset($_GET['debug'])) { ?>
 					<div class="row">
 						<div class="col-xs-3">
 							<div class="ace-box">
@@ -84,13 +85,16 @@
 							</div>
 						</div>
 					</div>
+					<?php } ?>
 					<div class="ace-utils">
 						<div class="ace-utils-left">
-							<a href="">Conseils &amp; Actu : La lettre d'Ellen</a>
+							<a href="<?php echo hook('path_root').'blog'; ?>">Conseils &amp; Actu : La lettre d'Ellen</a>
 						</div>
+						<?php if(isset($_GET['debug'])) { ?>
 						<div class="ace-utils-right">
 							<a href="">Les jobs à la une : En voir plus <i class="fa fa-search-plus"></i></a>
 						</div>
+						<?php } ?>
 					</div>
 				</div>
 			</div>

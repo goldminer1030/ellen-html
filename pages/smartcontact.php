@@ -2,15 +2,11 @@
 				<div class="smc-contact-zone">
 					<h2>Contact</h2>
 					<?php
-					$itemSelect = 1;
-					$listSelect = array(
-						'Ma candidature',
-						'Mon besoin en recrutement',
-						'Un conseil en recrutement'
-					);
+					$itemSelect = (int)EllenScottHook::BOOL_DEFAULT_CHOIX_CONTACT;
+					$listSelect = EllenScottHook::ENUM_CHOIX_CONTACT;
 					$itemSelect %= count($listSelect);
 					?>
-					<form method="POST">
+					<form method="POST" action="<?php echo hook('path_root').hook('search_theme_route_by_id', array('pages', 16)); ?>">
 						<div class="smc-exchange">
 							Je souhaite échanger avec Ellen concernant
 							<div class="smc-selection">
@@ -22,7 +18,7 @@
 									<?php } ?>
 									</ul>
 								</span>
-								<button>Go</button>
+								<button><img src="<?php echo hook('path_root'); ?>static/images/small-go-cheval.png" alt="<?php echo hook('get_last_alt_image'); ?>" /></button>
 								<input type="text" class="hide" name="smcMethod" value="<?php echo $listSelect[$itemSelect]; ?>"/>
 							</div>
 						</div>
@@ -37,13 +33,13 @@
 					<hr/>
 					<div class="row">
 						<div class="col-xs-4">
-							<a href="" data-toggle="tooltip" title="Métro ligne 3"><span class="fico fico-geo fico-trois"></span></a>
+							<a href="https://www.ratp.fr/itineraires/" target="_blank" data-toggle="tooltip" title="Métro ligne 3"><span class="fico fico-geo fico-trois"></span></a>
 						</div>
 						<div class="col-xs-4">
-							<a href="" data-toggle="tooltip" title="Transilien ligne L"><span class="fico fico-geo fico-l"></span></a>
+							<a href="https://transilien.mobi/itineraire" target="_blank" data-toggle="tooltip" title="Transilien ligne L"><span class="fico fico-geo fico-l"></span></a>
 						</div>
 						<div class="col-xs-4">
-							<a href="" data-toggle="tooltip" title="Parking Marjolin"><span class="fico fico-geo fico-p"></span></a>
+							<a data-toggle="tooltip" title="Parking Marjolin"><span class="fico fico-geo fico-p"></span></a>
 						</div>
 					</div>
 					<hr/>
@@ -58,6 +54,6 @@
 					</div>
 				</div>
 				<div class="smc-bg">
-					<img src="<?php echo hook('decodeRouteImage', array('@data@{15}', 'large')); ?>" alt="<?php echo hook('get_last_alt_image'); ?>" />
+					<div class="gmap-container" id="gmap"></div>
 				</div>
 			</div>

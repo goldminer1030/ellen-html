@@ -1,4 +1,7 @@
-  <div class="header-title-container">
+<?php
+$post = hook('macro', '$:/view/post');
+?>
+	<div class="header-title-container">
 		<div class="entete">
 			<div class="flotaison-container">
 				<div class="textOver text0">
@@ -6,117 +9,83 @@
 					<span class="subtitle">d'ellen</span>
 				</div>
 				<div class="background-image">
-					<img src="static/images/blog-page-title.jpg" class="cimagex" alt="header title"/>
+					<img src="<?php echo hook('decodeRouteImage', array('@data@{46}', 'large')); ?>" class="cimagex" alt="header title"/>
 				</div>
 			</div>
 		</div>
-  </div>
-  
-  <div class="blog-topbar-links">
-    <a href="">Je m'inscris</a>
-    <a href="">Espace Candidat</a>
-    <a href="">Espace Client</a>
-  </div>
+	</div>
+	
+	<?php if(isset($_GET['debug'])) { ?>
+	<div class="blog-topbar-links">
+		<a href="">Je m'inscris</a>
+		<a href="">Espace Candidat</a>
+		<a href="">Espace Client</a>
+	</div>
+	<?php } ?>
 
-  <div class="blog-page-content bg-white">
-    <div class="container">
-      <!-- Breadcrumb -->
-      <nav class="breadcrumb">
-        <a class="breadcrumb-item" href="#">Vous êtes ici</a>
-        <a class="breadcrumb-item" href="#">Accueil</a>
-        <span class="breadcrumb-item active">La lettre d’Ellen</span>
-      </nav>
+	<div class="blog-page-content bg-white">
+		<div class="container">
+			<!-- Breadcrumb -->
+			<?php echo hook('get_fil_ariane'); ?>
 
-      <!-- Intro -->
-      <div class="row text-center">
-        <div class="col-sm-12 col-md-2"></div>
-        <div class="col-sm-12 col-md-8 blog-intro">
-          <p class="blog-intro-title">Parlons recrutement</p>
-          <p class="blog-intro-content">Le but de ce blog n'est pas d'étaler notre science sur l'art de recruter mais plutôt de pouvoir échanger ensemble sur notre
-            quotidien et s'adresse à tout le monde (candidats, employeurs, consultants en recrutement): Partager notre retour d'expérience,
-            les dernières innovations digitales, les nouvelles méthodes de recrutement, comment trouver des profils rares, des conseils
-            pour négocier son salaire, les évolutions sur le Code de travail...autant sujet que nous pouvons aborder ensemble.</p>
-        </div>
-      </div>
+			<!-- Intro -->
+			<div class="row text-center">
+				<div class="col-sm-12 col-md-2"></div>
+				<div class="col-sm-12 col-md-8 blog-intro">
+					<?php echo hook('cms_html', hook('decodeRouteImage', array($post->getContent(), 'medium'))); ?>
+				</div>
+			</div>
 
-      <!-- Blog Categories -->
-      <ul class="nav navbar-nav blog-categories">
-        <li class="active">
-          <a href="#">TOUS LES ARTICLES</a>
-        </li>
-        <li>
-          <a href="#">finance</a>
-        </li>
-        <li>
-          <a href="#">human</a>
-        </li>
-        <li>
-          <a href="#">buisness</a>
-        </li>
-        <li>
-          <a href="#">supply chain engineering</a>
-        </li>
-        <li>
-          <a href="#">information technologies</a>
-        </li>
-      </ul>
+			<!-- Blog Categories -->
+			<ul class="nav navbar-nav blog-categories">
+				<li class="active" data-id="0">
+					<a href="#home">TOUS LES ARTICLES</a>
+				</li>
+				<?php foreach($listPractices as $practice) { ?>
+				<li data-id="<?php echo $practice->getId(); ?>">
+					<a href="#<?php echo Tools::slug($practice->getNom()); ?>"><?php echo Tools::strFormat($practice->getNom(), 'AB'); ?></a>
+				</li>
+				<?php } ?>
+			</ul>
 
-      <!-- Blogs -->
-      <div class="blog-item">
+			<!-- Blogs -->
+			<?php
+			global $PracticesManager;
+			$listArticles = hook('get_custom_post', array('articles', 'view_all_post_enable'));
+			foreach($listArticles as $article) {
+				/* Practice */
+				$practice = null;
+				if($article->getParent()) {
+					$practice = $PracticesManager->queryById($article->getParent());
+					if(!$practice) { $practice = null; }
+				}
+				/* Link */
+				$link = hook('path_root').hook('search_theme_route_by_id', array('articles', $article->getId()));
+			?>
+			<div class="blog-item anim-hidemode" data-id-parent="<?php echo $article->getParent(); ?>">
 
-        <div class="blog-image">
-          <img src="static/images/blog.jpg" class="cimagex" alt="blog image" />
-          <p class="blog-item-category">Human</p>
-          <p class="blog-item-title">Le digital : outil de démarcation dans le recrutement</p>
-        </div>
+				<div class="blog-image">
+					<img src="<?php echo hook('decodeRouteImage', array($article->getThemePicture(), 'small')); ?>" class="cimagex" alt="blog image" />
+					<p class="blog-item-category esc-practice-<?php echo $article->getParent(); ?>-bg"><?php echo (!is_null($practice) ? $practice->getNom() : ''); ?></p>
+					<p class="blog-item-title"><?php echo $article->getTitle(); ?></p>
+				</div>
 
-        <div class="clearfix blog-content">
-          <div class="blog-date-wrapper">
-            <p class="blog-day-month">05/09</p>
-            <p class="blog-year">2017</p>
-          </div>
-          <div class="blog-content-wrapper">
-            <p class="blog-content-text">La question est récurrente pour la plupart des candidats qu'ils soient en veille passive ou en recherche active, comment
-            faire la différence et se faire contacter par un recruteur?<br> Ellen Scott Career vous donne la parole et vous propose de vous
-            différencier en créant le cv le plus original (version papier, version vidéo). Les CV les plus originaux seront mis en ligne
-            sur le blog d'Ellen et consultables par d'éventuels recruteurs.<br><br>Action! ça tourne !<br><br>Envoyez votre CV le plus original:
-            smartcareer@ellenscottcareer.com<br><br>Date limite d'envoi des cv: 25 Novembre 2017</p>
-          </div>
-        </div>
+				<div class="clearfix blog-content">
+					<div class="blog-date-wrapper">
+						<p class="blog-day-month"><?php echo date('d/m', strtotime($article->getDateCreation())); ?></p>
+						<p class="blog-year"><?php echo date('Y', strtotime($article->getDateCreation())); ?></p>
+					</div>
+					<div class="blog-content-wrapper">
+						<?php echo TruncateHTML::run(html_entity_decode(hook('cms_html', $article->getContent())), 800, '...'); ?>
+					</div>
+				</div>
 
-        <div class="blog-button-wrapper">
-          <a class="btn btn-share" href="">Partager</a>
-          <a class="btn btn-read" href="">Lire</a>
-        </div>
-      </div>
-
-      <div class="blog-item">
-
-        <div class="blog-image">
-          <img src="static/images/blog.jpg" class="cimagex" alt="blog image" />
-          <p class="blog-item-category">Human</p>
-          <p class="blog-item-title">Le digital : outil de démarcation dans le recrutement</p>
-        </div>
-
-        <div class="clearfix blog-content">
-          <div class="blog-date-wrapper">
-            <p class="blog-day-month">05/09</p>
-            <p class="blog-year">2017</p>
-          </div>
-          <div class="blog-content-wrapper">
-            <p class="blog-content-text">La question est récurrente pour la plupart des candidats qu'ils soient en veille passive ou en recherche active, comment
-            faire la différence et se faire contacter par un recruteur?<br> Ellen Scott Career vous donne la parole et vous propose de vous
-            différencier en créant le cv le plus original (version papier, version vidéo). Les CV les plus originaux seront mis en ligne
-            sur le blog d'Ellen et consultables par d'éventuels recruteurs.<br><br>Action! ça tourne !<br><br>Envoyez votre CV le plus original:
-            smartcareer@ellenscottcareer.com<br><br>Date limite d'envoi des cv: 25 Novembre 2017</p>
-          </div>
-        </div>
-
-        <div class="blog-button-wrapper">
-          <a class="btn btn-share" href="">Partager</a>
-          <a class="btn btn-read" href="">Lire</a>
-        </div>
-      </div>
-      
-    </div>
-  </div>
+				<div class="blog-button-wrapper">
+					<a class="btn btn-share" target="_blank" href="http://www.facebook.com/sharer.php?u=<?php echo $link; ?>">Partager</a>
+					<a class="btn btn-read" href="<?php echo $link; ?>">Lire</a>
+				</div>
+			</div>
+			<?php } ?>
+			
+		</div>
+	</div>

@@ -5,6 +5,7 @@
       <div class="row smartsearch">
         <div class="col-sm-12">
           <div class="smarthome">
+            <?php if(isset($_GET['debug'])) { ?>
             <div class="smh-search">
               <div class="smh-embed">
                 <div class="smh-search-textbox">
@@ -48,6 +49,7 @@
                 </div>
               </div>
             </div>
+            <?php } ?>
           </div>
         </div>
       </div>

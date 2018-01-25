@@ -1,3 +1,7 @@
+<?php
+$post = hook('macro', '$:/view/post');
+$meta = hook('get_all_meta_post', $post->getId());
+?>
   <div class="header-title-container">
 		<div class="entete">
 			<div class="flotaison-container">
@@ -12,34 +16,27 @@
 		</div>
   </div>
 
+  <?php if(isset($_GET['debug'])) { ?>
   <div class="blog-topbar-links">
     <a href="">Je m'inscris</a>
     <a href="">Espace Client</a>
   </div>
+  <?php } ?>
 
   <div class="blog-page-content bg-white">
     <div class="container">
       <!-- Breadcrumb -->
-      <nav class="breadcrumb">
-        <a class="breadcrumb-item" href="#">Vous êtes ici</a>
-        <a class="breadcrumb-item" href="#">Accueil</a>
-        <span class="breadcrumb-item active">Employeurs</span>
-      </nav>
+      <?php echo hook('get_fil_ariane'); ?>
     </div>
 
     <!-- Employer Info -->
     <div class="employer-info">
-      <p class="employer-info-left">Ellen Scott Career accompagne <span class="highlight">les entreprises dans le recrutement de hauts potentiels en association avec un cabinet de conseil
-      en Direction Générale</span>. Pour cela, nous élaborons notre <strong>politique de recrutement</strong> en fonction de votre <span class="highlight">cycle organisationnel</span>
-      : transformation, croissance, changement d'actionnaire, réorganisation, nouvelle implantation. En analysant vos enjeux et
-      vos problématiques, nous vous conseillons dans vos <strong>choix de collaborateurs clés qui contribuent au succès de votre modèle
-      économique.</strong></p>
-      <p class="employer-info-right">Selon le niveau du recrutement (Management intermédiaire et/ou Cadres Dirigeants), nous adoptons une stratégie <span class="highlight">spécifique
-      d'approche</span> en tenant compte de différents facteurs comme votre secteur d'activité et/ou votre métier. Ainsi, au sein d'Ellen
-      Scott Career, nous avons élaboré des <span class="highlight">solutions adaptées (approche mixte)</span>.</p>
+      <div class="employer-info-left"><?php echo hook('cms_html', hook('decodeRouteImage', array($post->getContent(), 'medium'))); ?></div>
+      <div class="employer-info-right"><?php echo hook('cms_html', hook('decodeRouteImage', array((isset($meta['meta_x_2']) ? $meta['meta_x_2'] : ''), 'medium'))); ?></div>
     </div>
 
     <!-- Compensation Study -->
+    <?php if(isset($_GET['debug'])) { ?>
     <div class="compensation">
       <p class="compensation-study">Voir notre étude de rémunérations</p>
       
@@ -63,25 +60,43 @@
         </div>
       </div>
     </div>
+    <?php } ?>
 
     <!-- Are You Ellen Scott -->
     <div class="career-timeline-container">
       <div class="container">
         <div class="career-timeline">
-          <img src="static/images/career-timeline.png" class="career-timeline-image" alt="career timeline" />
+          <div class="career-timeline">
+            <span data-esc-timeline="1"></span>
+            <span data-esc-timeline="2"></span>
+          </div>
 
           <p class="are-you-ellen">Are you Ellen Scott</p>
 
           <div class="executive-career">
-            <p class="executive-career-title">Executive Career</p>
-            <p class="executive-career-details">Recrutement par approche directe sur des postes de direction générale, de direction opérationnelle / fonctionnelle</p>
+			<a href="<?php echo hook('path_root').hook('search_theme_route_by_id', array('pages', 4)); ?>">
+				<p class="executive-career-title" data-esc-timeline="1">Executive Career</p>
+				<p class="executive-career-details">Recrutement par approche directe sur des postes de direction générale et de direction opérationnelle/fonctionnelle :</p>
+			</a>
+			<ul class="career-lists-executive">
+			<?php
+			foreach($listPractices as $practice) {
+			if ($practice->getId() == 3) {
+			$link = hook('path_root').hook('search_theme_route_by_id', array($practice, $practice->getId()));
+			?>
+			<li><a href="<?php echo $link; ?>" class="esc-practice-<?php echo $practice->getId(); ?>-colorh"><?php echo $practice->getNom(); ?> Career</a></li>
+			<?php } } ?>
+			</ul>
           </div>
 
           <div class="expert-career">
-            <p class="expert-career-title">Expert Career</p>
-            <p class="expert-career-details">Recrutement par approche mixte d’experts à cadres confirmés au travers des expertises métiers suivantes :</p>
+			<a href="<?php echo hook('path_root').hook('search_theme_route_by_id', array('pages', 4)); ?>">
+				<p class="expert-career-title" data-esc-timeline="2">Expert Career</p>
+				<p class="expert-career-details">Recrutement par approche mixte d’experts et cadres confirmés au travers des expertises métiers suivantes :</p>
+			</a>
           </div>
 
+<?php /*
           <div class="color-code-wrapper">
             <img src="static/images/timeline-arrow.png" alt="timeline arrow" />
             <span class="color-code">code couleur rose si selectionné</span>
@@ -92,15 +107,17 @@
             <img src="static/images/timeline-circle.png" alt="alternate" />
             <span class="alternate">alterner</span>
           </div>
+*/ ?>
 
           <ul class="career-lists">
-            <li>Finance Career</li>
-            <li class="active">Human Career</li>
-            <li>Business Career</li>
-            <li>IT Career</li>
-            <li>Supply Chain & Engineering Career</li>
+            <?php
+			foreach($listPractices as $practice) {
+				if ($practice->getId() != 3) {
+				$link = hook('path_root').hook('search_theme_route_by_id', array($practice, $practice->getId()));
+			?>
+            <li><a href="<?php echo $link; ?>" class="esc-practice-<?php echo $practice->getId(); ?>-colorh"><?php echo $practice->getNom(); ?> Career</a></li>
+				<?php } } ?>
           </ul>
-
           <p class="question-mark">?</p>
         </div>
       </div>
@@ -110,69 +127,24 @@
     <p class="our-approach">Notre démarche</p>
 
     <div class="row cards">
-      <div class="col-sm-6 col-md-4 card bg-white">
-        <p class="card-title">1</p>
-        <p class="card-details">Compréhension de votre environnement</p>
+      <?php
+      for($i=1; $i <= 6; $i++) {
+        $content = (isset($meta['meta_x_demarche_'.$i]) ? $meta['meta_x_demarche_'.$i] : '');
+      ?>
+      <div class="col-sm-6 col-md-4 card <?php echo (!($i%2) ? 'bg-black' : 'bg-white'); ?>">
+        <p class="card-title"><?php if(preg_match('#<h[0-6][^>]*>([0-9]+)[^<]+</h1>#i', $content, $regex)) { echo $regex[1]; } ?></p>
+        <p class="card-details"><?php if(preg_match('#<h[0-6][^>]*>[0-9]+ ?([^<]+)</h1>#i', $content, $regex)) { echo $regex[1]; } ?></p>
         <div class="overlay black-overlay">
           <div class="overlay-wrapper">
-            <span class="overlay-text">Définition du besoin, étude de la faisabilité du projet, conseil sur le profil recherché, spécifications au contrat de collaboration,
-            calendrier prévisionnel,</span>
+            <span class="overlay-text"><?php echo hook('cms_html', hook('decodeRouteImage', array(preg_replace('#<h[0-6][^>]*>[^<]+</h[0-6]>#i', '', $content), 'medium'))); ?></span>
           </div>
         </div>
       </div>
-      <div class="col-sm-6 col-md-4 card bg-black">
-        <p class="card-title">2</p>
-        <p class="card-details">Compréhension de votre environnement</p>
-        <div class="overlay black-overlay">
-          <div class="overlay-wrapper">
-            <span class="overlay-text">Définition du besoin, étude de la faisabilité du projet, conseil sur le profil recherché, spécifications au contrat de
-              collaboration, calendrier prévisionnel,</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-sm-push-6 col-md-4 col-md-push-0 card bg-white">
-        <p class="card-title">3</p>
-        <p class="card-details">Elaboration de la stratégie d'approche & de sourcing</p>
-        <div class="overlay black-overlay">
-          <div class="overlay-wrapper">
-            <span class="overlay-text">Définition du besoin, étude de la faisabilité du projet, conseil sur le profil recherché, spécifications au contrat de
-              collaboration, calendrier prévisionnel,</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-sm-pull-6 col-md-4 col-md-pull-0 card bg-black">
-        <p class="card-title">4</p>
-        <p class="card-details">Évaluation & Sélection</p>
-        <div class="overlay black-overlay">
-          <div class="overlay-wrapper">
-            <span class="overlay-text">Définition du besoin, étude de la faisabilité du projet, conseil sur le profil recherché, spécifications au contrat de
-              collaboration, calendrier prévisionnel,</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4 card bg-white">
-        <p class="card-title">5</p>
-        <p class="card-details">Présentation des candidats</p>
-        <div class="overlay black-overlay">
-          <div class="overlay-wrapper">
-            <span class="overlay-text">Définition du besoin, étude de la faisabilité du projet, conseil sur le profil recherché, spécifications au contrat de
-              collaboration, calendrier prévisionnel,</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4 card bg-black">
-        <p class="card-title">6</p>
-        <p class="card-details">Conseil & suivi du recrutement</p>
-        <div class="overlay black-overlay">
-          <div class="overlay-wrapper">
-            <span class="overlay-text">Définition du besoin, étude de la faisabilité du projet, conseil sur le profil recherché, spécifications au contrat de
-              collaboration, calendrier prévisionnel,</span>
-          </div>
-        </div>
-      </div>
+      <?php } ?>
     </div>
 
     <!-- Ellen is Commit you -->
+	<p class="our-engagements">Nos engagements</p>
     <div class="ellen-commit-container">
       <div class="ellen-commit">
         <p class="ellen-commit-details">Ellen <span class="color-dark">s'engage</p>

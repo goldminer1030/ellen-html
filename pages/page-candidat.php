@@ -1,3 +1,7 @@
+<?php
+$post = hook('macro', '$:/view/post');
+$meta = hook('get_all_meta_post', $post->getId());
+?>
   <div class="header-title-container">
 		<div class="entete">
 			<div class="flotaison-container">
@@ -12,20 +16,19 @@
 		</div>
   </div>
 
+  <?php if(isset($_GET['debug'])) { ?>
   <div class="blog-topbar-links">
     <a href="">Je m'inscris</a>
     <a href="">Espace Candidat</a>
   </div>
+  <?php } ?>
 
   <div class="blog-page-content bg-white">
     <div class="container">
       <!-- Breadcrumb -->
-      <nav class="breadcrumb">
-        <a class="breadcrumb-item" href="#">Vous êtes ici</a>
-        <a class="breadcrumb-item" href="#">Accueil</a>
-        <span class="breadcrumb-item active">Candidat</span>
-      </nav>
+      <?php echo hook('get_fil_ariane'); ?>
 
+      <?php if(isset($_GET['debug'])) { ?>
       <div class="row smartsearch">
         <div class="col-sm-12">
           <div class="smarthome">
@@ -70,17 +73,20 @@
           </div>
         </div>
       </div><!-- ./row -->
+      <?php } ?>
 
-      <div class="row boxed-flex-sm boxed-numbers">
+      <div><?php echo hook('cms_html', hook('decodeRouteImage', array($post->getContent(), 'medium'))); ?></div>
+
+      <div class="row boxed-flex-sm<?php if(isset($_GET['debug'])) { ?> boxed-numbers<?php } ?>">
         <div class="col-md-4 boxed-flex-sm">
           <div class="boxed-content">
             <P class="boxed-number">1</P>
+            <?php $content = (isset($meta['meta_x_2']) ? $meta['meta_x_2'] : ''); ?>
             <div class="boxed-wrapper bg-dark">
-              <p class="boxed-title">Convictions d'Ellen Scott Career</p>
-              <p class="boxed-description text-justify">La résultante de la <span class="highlight">performance d'un collaborateur</span> se trouve dans <strong>le plaisir et le sens que nous donnons au travail</strong>. C'est
-              pour Ellen Scott Career un principe fondamental contribuant à la motivation et à l'implication des salariés. C'est pourquoi,
-              <span class="highlight">nous prenons le temps de vous rencontrer et de travailler ensemble sur vos</span> réflexions et attentes profondes. Cette rencontre
-              est un moment privilégié afin d'identifier ensemble <strong>les leviers qui donnent du sens à votre vie professionnelle</strong>.</p>
+              <p class="boxed-title"><?php if(preg_match('#<h[0-6][^>]*>([^<]+)</h2>#i', $content, $regex)) { echo $regex[1]; } ?></p>
+              <div class="boxed-description text-justify">
+                <?php echo hook('cms_html', hook('decodeRouteImage', array(preg_replace('#<h[0-6][^>]*>[^<]+</h[0-6]>#i', '', $content), 'medium'))); ?>
+              </div>
             </div>
           </div>
         </div>
@@ -88,13 +94,12 @@
         <div class="col-md-4 boxed-flex-sm">
           <div class="boxed-content">
             <P class="boxed-number">2</P>
+            <?php $content = (isset($meta['meta_x_3']) ? $meta['meta_x_3'] : ''); ?>
             <div class="boxed-wrapper bg-dark">
-              <p class="boxed-title">A chaque projet une solution spécifique</p>
-              <p class="boxed-description text-justify">Que ce soit pour un projet à durée déterminée (<span class="highlight">CDD</span>) ou indeterminée (<span class="highlight">CDI</span>), nous serions ravis de vous accompagner dans la
-              gestion de votre smart career partout en <span class="highlight">France</span>.</p>
-
-              <div class="text-center">
-                <img src="static/images/tiny-map.png" alt="tiny map" />
+              <p class="boxed-title"><?php if(preg_match('#<h[0-6][^>]*>([^<]+)</h2>#i', $content, $regex)) { echo $regex[1]; } ?></p>
+              <div class="boxed-description text-justify">
+                <?php echo hook('cms_html', hook('decodeRouteImage', array(preg_replace('#<h[0-6][^>]*>[^<]+</h[0-6]>#i', '', $content), 'medium'))); ?>
+				<p style="text-align: center;"><img alt="Tiny image map" src="<?php echo hook('path_root'); ?>static/images/tiny-map.png" /></p>
               </div>
             </div>
           </div>
@@ -103,20 +108,18 @@
         <div class="col-md-4 boxed-flex-sm">
           <div class="boxed-content">
             <P class="boxed-number">3</P>
+            <?php $content = (isset($meta['meta_x_4']) ? $meta['meta_x_4'] : ''); ?>
             <div class="boxed-wrapper bg-dark">
-              <p class="boxed-title">Ethique & Déontologie</p>
-              <p class="boxed-description text-justify">Ellen Scott Career vous garantit toute <span class="highlight">confidentialité</span> dans votre démarche ainsi qu'une <span class="highlight">égalité de traitement et d'informations</span>
-              entre les différents candidats:</p>
-
-              <div class="dot-description">
-                <p class="top-desc">Un engagement de confidentialité et de déontologie,</p>
-                <p class="bottom-desc">Un respect de l'égalité des chances et de la diversité</p>
+              <p class="boxed-title"><?php if(preg_match('#<h[0-6][^>]*>([^<]+)</h2>#i', $content, $regex)) { echo $regex[1]; } ?></p>
+              <div class="boxed-description text-justify">
+                <?php echo hook('cms_html', hook('decodeRouteImage', array(preg_replace('#<h[0-6][^>]*>[^<]+</h[0-6]>#i', '', $content), 'medium'))); ?>
               </div>
             </div>
           </div>
         </div>
       </div><!-- ./row -->
 
+      <?php if(isset($_GET['debug'])) { ?>
       <div class="row boxed-flex-sm gap-bottom-normal">
         <div class="col-md-4 boxed-flex-sm">
           <div class="boxed-content small-gap">
@@ -144,7 +147,7 @@
 
               <img src="static/images/mark-jobx.png" class="boxed-top-mark" alt="resume drop" />
 
-              <p class="boxed-bottom-description bg-red">L'<span class="color-black">algorithme de matching</span> analyse votre CV afin de vous proposer l'offre d'emploi qui vous correspond le mieux.</p>
+              <p class="boxed-bottom-description bg-red">L'<span>algorithme de matching</span> analyse votre CV afin de vous proposer l'offre d'emploi qui vous correspond le mieux.</p>
             </div>
           </div>
         </div>
@@ -172,4 +175,5 @@
         </div>
       </div><!-- ./row -->
     </div>
+    <?php } ?>
   </div>

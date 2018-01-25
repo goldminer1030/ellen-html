@@ -1,12 +1,15 @@
+<?php
+$post = hook('macro', '$:/view/post');
+?>
   <div class="header-title-container">
 		<div class="entete">
 			<div class="flotaison-container">
-				<div class="textOver text0">
-          executive <br />
+				<div class="textOver text0 esc-practice-<?php echo $post->getId(); ?>-color">
+          <?php echo $post->getNom(); ?><br/>
 					<span class="subtitle">Career</span>
 				</div>
 				<div class="background-image">
-					<img src="static/images/practice.jpg" class="cimagex" alt="header title"/>
+					<img src="<?php echo hook('decodeRouteImage', array($post->getCover(), 'large')); ?>" class="cimagex" alt="<?php echo hook('get_last_alt_image'); ?>" />
 				</div>
 			</div>
 		</div>
@@ -15,6 +18,7 @@
   <div class="blog-page-content bg-dark">
     <div class="container gap-top-small gap-bottom-small">
 
+      <?php if(isset($_GET['debug'])) { ?>
       <div class="row smartsearch">
         <div class="col-sm-12">
           <div class="smarthome">
@@ -60,82 +64,86 @@
           </div>
         </div>
 		  </div><!-- ./row -->
-
+      <?php } ?>
     </div>
 
     <div class="tab top-tab top-active" id="top-active" data-active="0">
       <ul class="boxed-flex-sm">
         <li>
           <a href="#tab-top-top-active-1">
-            <span class="text-capitalize">Executive Career</span>
+            <span class="text-capitalize"><?php echo $post->getNom(); ?> Career</span>
           </a>
         </li>
+        <?php if(isset($_GET['debug'])) { ?>
         <li>
           <a href="#tab-top-top-active-2">
             <span class="text-capitalize">Nos offres</span>
           </a>
         </li>
+		<?php } ?>
         <li>
           <a href="#tab-top-top-active-3">
             <span class="text-capitalize">Rémunérations</span>
           </a>
         </li>
+        
       </ul>
     
       <div id="tab-top-top-active-1">
+        <?php if(isset($_GET['debug'])) { ?>
         <p class="practice-title gap-left-md-big">Les jobs à la une</p>
-        
         <div class="row cards">
-          <div class="col-xs-6 col-sm-4 col-md-2 card card-sm bg-light-gray">
+          <div class="col-xs-6 col-sm-4 col-md-2 card card-sm bg-light-gray esc-practice-<?php echo $post->getId(); ?>-bgh">
             <p class="card-content">CM Chargé(e) de communication</p>
             <a class="card-link" href="">STAGE</a>
           </div>
-          <div class="col-xs-6 col-sm-4 col-md-2 card card-sm bg-white">
+          <div class="col-xs-6 col-sm-4 col-md-2 card card-sm bg-white esc-practice-<?php echo $post->getId(); ?>-bgh">
             <p class="card-content">Chargé(e) de communication et développement</p>
             <a class="card-link" href="">CDI</a>
           </div>
-          <div class="col-xs-6 col-xs-push-6 col-sm-4 col-sm-push-0 col-md-2 card card-sm bg-light-gray">
+          <div class="col-xs-6 col-xs-push-6 col-sm-4 col-sm-push-0 col-md-2 card card-sm bg-light-gray esc-practice-<?php echo $post->getId(); ?>-bgh">
             <p class="card-content">CM Chargé(e) de communication</p>
             <a class="card-link" href="">STAGE</a>
           </div>
-          <div class="col-xs-6 col-xs-pull-6 col-sm-4 col-sm-pull-0 col-md-2 card card-sm bg-white">
+          <div class="col-xs-6 col-xs-pull-6 col-sm-4 col-sm-pull-0 col-md-2 card card-sm bg-white esc-practice-<?php echo $post->getId(); ?>-bgh">
             <p class="card-content">CM Chargé(e) de communication</p>
             <a class="card-link" href="">STAGE</a>
           </div>
-          <div class="col-xs-6 col-sm-4 col-md-2 card card-sm bg-light-gray">
+          <div class="col-xs-6 col-sm-4 col-md-2 card card-sm bg-light-gray esc-practice-<?php echo $post->getId(); ?>-bgh">
             <p class="card-content">CM Chargé(e) de communication</p>
             <a class="card-link" href="">STAGE</a>
           </div>
-          <div class="col-xs-6 col-sm-4 col-md-2 card card-sm bg-white">
+          <div class="col-xs-6 col-sm-4 col-md-2 card card-sm bg-white esc-practice-<?php echo $post->getId(); ?>-bgh">
             <p class="card-content">CM Chargé(e) de communication</p>
             <a class="card-link" href="">STAGE</a>
           </div>
           
-          <div class="col-xs-6 col-sm-4 col-md-2 card card-sm bg-white">
+          <div class="col-xs-6 col-sm-4 col-md-2 card card-sm bg-white esc-practice-<?php echo $post->getId(); ?>-bgh">
             <p class="card-content">CM Chargé(e) de communication</p>
             <a class="card-link" href="">STAGE</a>
           </div>
-          <div class="col-xs-6 col-sm-4 col-md-2 card card-sm bg-light-gray">
+          <div class="col-xs-6 col-sm-4 col-md-2 card card-sm bg-light-gray esc-practice-<?php echo $post->getId(); ?>-bgh">
             <p class="card-content">CM Chargé(e) de communication</p>
             <a class="card-link" href="">STAGE</a>
           </div>
-          <div class="col-xs-6 col-xs-push-6 col-sm-4 col-sm-push-0 col-md-2 card card-sm bg-white">
+          <div class="col-xs-6 col-xs-push-6 col-sm-4 col-sm-push-0 col-md-2 card card-sm bg-white esc-practice-<?php echo $post->getId(); ?>-bgh">
             <p class="card-content">CM Chargé(e) de communication</p>
             <a class="card-link" href="">STAGE</a>
           </div>
-          <div class="col-xs-6 col-xs-pull-6 col-sm-4 col-sm-pull-0 col-md-2 card card-sm bg-light-gray">
+          <div class="col-xs-6 col-xs-pull-6 col-sm-4 col-sm-pull-0 col-md-2 card card-sm bg-light-gray esc-practice-<?php echo $post->getId(); ?>-bgh">
             <p class="card-content">CM Chargé(e) de communication</p>
             <a class="card-link" href="">STAGE</a>
           </div>
-          <div class="col-xs-6 col-sm-4 col-md-2 card card-sm bg-white">
+          <div class="col-xs-6 col-sm-4 col-md-2 card card-sm bg-white esc-practice-<?php echo $post->getId(); ?>-bgh">
             <p class="card-content">CM Chargé(e) de communication</p>
             <a class="card-link" href="">STAGE</a>
           </div>
-          <div class="col-xs-6 col-sm-4 col-md-2 card card-sm bg-light-gray">
+          <div class="col-xs-6 col-sm-4 col-md-2 card card-sm bg-light-gray esc-practice-<?php echo $post->getId(); ?>-bgh">
             <p class="card-content">CM Chargé(e) de communication</p>
             <a class="card-link" href="">STAGE</a>
           </div>
         </div><!-- ./row -->
+        <?php } ?>
 
         <p class="practice-title gap-top-small gap-bottom-small gap-left-md-big">Notre expertise métier</p>
 
@@ -144,48 +152,48 @@
             <div class="business">
               <p class="business-title gap-top-small gap-bottom-lg">Les métiers en
                 <br />
-                <span class="subtitle"><span class="highlight-pink">Executive</span> Career</span>
+                <span class="subtitle"><span class="highlight-pink esc-practice-<?php echo $post->getId(); ?>-color"><?php echo $post->getNom(); ?></span> Career</span>
               </p>
               <div class="business-image">
-                <img src="static/images/executive.jpg" class="cimagex" alt="business expertise" />
+                <img src="<?php echo hook('decodeRouteImage', array($post->getCover(), 'large')); ?>" class="cimagex" alt="<?php echo hook('get_last_alt_image'); ?>" />
               </div>
             </div>
           </div>
 
           <div class="col-md-4 gap-md-big gap-bottom-small">
-            <p class="ellen-executive gap-bottom-normal">Ellen Scott Executive Career - accompagne le recrutement de cadres dirigeants, membres de comité de direction dans les fonctions
-            suivantes :</p>
+            <div class="ellen-executive gap-bottom-normal">
+              <?php echo hook('cms_html', hook('decodeRouteImage', array($post->getContent(), 'medium'))); ?>
+            </div>
+            <?php if(strlen($post->getItemsList())) { ?>
             <ul class="executive-lists">
-              <li>Board Level</li>
-              <li>Direction Générale & Opérationnelle</li>
-              <li>CFO & Finance</li>
-              <li>CIO & IT</li>
-              <li>Ressources Humaines</li>
-              <li>Legal</li>
-              <li>Marketing & Communication</li>
-              <li>Affaires réglementaires</li>
-              <li>Production, Achats & Supply Chain</li>
-              <li>Ventes</li>
+              <li><?php echo implode('</li><li>', explode("\n", $post->getItemsList())); ?></li>
             </ul>
+            <?php } ?>
           </div>
 
           <div class="col-md-4 gap-left-md-big gap-bottom-small">
-            <div class="boxDynMenuContainer">
-              <div class="boxDynMenu">
-                <div>
-                  <div class="ecd-pink-bg">Nous confier un besoin en recrutement</div>
-                  <div class="ecd-gray-bg">Nous confier votre carrière</div>
-                </div>
-                <div>
-                  <div class="ecd-gray-bg">La lettre d’Ellen</div>
-                  <div class="ecd-black-bg">Nous contacter</div>
-                </div>
-              </div>
-            </div>
+            <div class="text-right boxDynMenuContainer boxDynMenuContainer-practice">
+				<form id="contactLinkForm" action="<?php echo hook('path_root').hook('search_theme_route_by_id', array('pages', 16)); ?>" method="POST">
+					<div class="boxDynMenu">
+					  <div>
+						<div class="ecd-pink-bg contactLinkToRecrutment esc-practice-<?php echo $post->getId(); ?>-bg">
+						<?php if ($post->getId() == 3) { echo 'Nous confier une mission de chasse'; } else { echo 'Nous confier un besoin en recrutement'; } ?>
+						</div>
+						<div class="ecd-gray-bg contactLinkToCandidate">Nous confier votre carrière</div>
+					  </div>
+					  <div>
+						<div class="ecd-gray-bg contactLinkToBlog" data-action="<?php echo hook('path_root').hook('search_theme_route_by_id', array('pages', 18)); ?>">La lettre d’Ellen</div>
+						<div class="ecd-black-bg contactLinkBlank">Nous contacter</div>
+					  </div>
+					</div>
+					<input type="text" class="hide" name="smcMethod" value=""/>
+				</form>
+			  </div>
           </div>
         </div><!-- ./row -->
         
       </div>
+      <?php if(isset($_GET['debug'])) { ?>
       <div id="tab-top-top-active-2">
 
         <div class="container">
@@ -222,7 +230,7 @@
                     ipsum. Nullam interdum justo nisi, a fermentum nisl posuere eu. Maecenas nunc ipsum, varius in ipsum ac, viverra cursus
                     urna. Donec in ipsum eleifend nisi imperdiet ultrices vitae molestie dui.</p>
                 </div>
-                <h3>Salaire annule minsouhaité</h3>
+                <h3>Salaire annule min souhaité</h3>
                 <div>
                   <p>Nam tortor mi, vehicula nec odio non, commodo vestibulum mauris? Mauris sem erat, iaculis ac lacus vel, placerat volutpat
                     ipsum. Nullam interdum justo nisi, a fermentum nisl posuere eu. Maecenas nunc ipsum, varius in ipsum ac, viverra cursus
@@ -330,122 +338,44 @@
           
         </div>
       </div>
+	  <?php } ?>
       <div id="tab-top-top-active-3">
         <div class="container">
-          <p class="practice-title">Rémunération annuelle brute en K€</p>
 
           <div class="row">
             <div class="col-md-7 gap-bottom-normal">
-              <p class="remuneration-details">Consultez notre étude sur les tendances du marché de l’emploi sur les rémunérations par métier. Il s’agit des tendances actuelles
-              à pondérer selon la structure des entreprises, la dynamique liée à chaque secteur d’activité et la conjoncture économique.
-              Les rémunérations présentées sont exprimées en milliers d’euros (k€) et correspondent au brut annuel fixe avec le cas échéant
-              une annotation concernant la partie variable et les éventuels avantages en nature. Ellen Scott Career travaille en conformité
-              avec les règles de déontologie de notre profession et les dispositions légales en matière de traitement des données personnelles
-              des candidats, afin de prévenir tout risque de discrimination. Les différents intitulés de poste, descriptifs sont écrits
-              au masculin pour faciliter la lecture du document mais ces concernent aussi bien des femmes que des hommes. Les rémunérations
-              présentées sont exprimées en milliers d’euros (k€) et correspondent au brut annuel fixe (avec le cas échéant une annotation
-              concernant la partie variable et les éventuels avantages en nature) pour des postes situés en région parisienne. Il faut
-              tenir compte d’une variation moyenne de rémunération entre l’Île-de-France et l’ensemble des régions en France :</p>
+              <p class="remuneration-details">Consultez notre étude sur les tendances du marché de l’emploi sur les rémunérations par métier. Il s’agit des tendances actuelles à pondérer selon la structure des entreprises, la dynamique liée à chaque secteur d’activité et la conjoncture économique. Les rémunérations présentées sont exprimées en milliers d’euros (k€) et correspondent au brut annuel fixe avec le cas échéant une annotation concernant la partie variable et les éventuels avantages en nature. Ellen Scott Career travaille en conformité avec les règles de déontologie de notre profession et les dispositions légales en matière de traitement des données personnelles des candidats, afin de prévenir tout risque de discrimination. Les différents intitulés de poste et descriptifs sont écrits au masculin pour faciliter la lecture du document mais concernent aussi bien des femmes que des hommes. Les rémunérations présentées sont exprimées en milliers d’euros (k€) et correspondent au brut annuel fixe (avec, le cas échéant, une annotation concernant la partie variable et les éventuels avantages en nature) pour des postes situés en région parisienne. Il faut tenir compte d’une variation moyenne de rémunération entre l’Île-de-France et l’ensemble des régions en France :</p>
             </div>
             <div class="col-md-5 text-center gap-bottom-normal">
-              <img src="static/images/remuneration-map.png" alt="remuneration map" />
+              <img src="<?php echo hook('path_root'); ?>static/images/remuneration-map.png" alt="remuneration map" />
             </div>
           </div>
 
-          <p class="remuneration-table-title">GESTION & TRAITMENT DE LINFORMATION</p>
+          <p class="remuneration-table-title">Rémunération annuelle brute en k€</p>
           <div class="table-responsive">
-            <table class="table table-bordered table-striped">
-              <thead class="thead-primary">
-                <tr>
-                  <th class="bg-pink color-white">POSTE</th>
-                  <th class="bg-dark color-white text-center">0 a 2 ans</th>
-                  <th class="bg-dark color-white text-center">2 a 5 ans</th>
-                  <th class="bg-dark color-white text-center">5 a 15 ans</th>
-                  <th class="bg-dark color-white text-center">5 a 10 ans</th>
-                  <th class="bg-dark color-white text-center">10 a 15 ans</th>
-                  <th class="bg-dark color-white text-center">15 ans et+</th>
-                  <th class="bg-dark color-white text-center">Part variable</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Archiviste</td>
-                  <td class="text-center">18 - 22</td>
-                  <td class="text-center">21 - 26</td>
-                  <td class="text-center">25 - 30</td>
-                  <td class="text-center">18 - 22</td>
-                  <td class="text-center">21 - 26</td>
-                  <td class="text-center">25 - 30</td>
-                  <td class="text-center">10 a 15%</td>
-                </tr>
-                <tr>
-                  <td>Documentaliste</td>
-                  <td class="text-center">18 - 22</td>
-                  <td class="text-center">21 - 26</td>
-                  <td class="text-center">25 - 30</td>
-                  <td class="text-center">18 - 22</td>
-                  <td class="text-center">21 - 26</td>
-                  <td class="text-center">25 - 30</td>
-                  <td class="text-center">10 a 15%</td>
-                </tr>
-                <tr>
-                  <td>Archiviste Cloud</td>
-                  <td class="text-center">18 - 22</td>
-                  <td class="text-center">21 - 26</td>
-                  <td class="text-center">25 - 30</td>
-                  <td class="text-center">18 - 22</td>
-                  <td class="text-center">21 - 26</td>
-                  <td class="text-center">25 - 30</td>
-                  <td class="text-center">10 a 15%</td>
-                </tr>
-                <tr>
-                  <td>Document Controller</td>
-                  <td class="text-center">18 - 22</td>
-                  <td class="text-center">21 - 26</td>
-                  <td class="text-center">25 - 30</td>
-                  <td class="text-center">18 - 22</td>
-                  <td class="text-center">21 - 26</td>
-                  <td class="text-center">25 - 30</td>
-                  <td class="text-center">10 a 15%</td>
-                </tr>
-                <tr>
-                  <td>Records Manager</td>
-                  <td class="text-center">18 - 22</td>
-                  <td class="text-center">21 - 26</td>
-                  <td class="text-center">25 - 30</td>
-                  <td class="text-center">18 - 22</td>
-                  <td class="text-center">21 - 26</td>
-                  <td class="text-center">25 - 30</td>
-                  <td class="text-center">10 a 15%</td>
-                </tr>
-                <tr>
-                  <td>Traducteur</td>
-                  <td class="text-center">18 - 22</td>
-                  <td class="text-center">21 - 26</td>
-                  <td class="text-center">25 - 30</td>
-                  <td class="text-center">18 - 22</td>
-                  <td class="text-center">21 - 26</td>
-                  <td class="text-center">25 - 30</td>
-                  <td class="text-center">10 a 15%</td>
-                </tr>
-              </tbody>
-            </table>
+            <?php echo $post->getRemunerationText(); ?>
           </div>
 
           <div class="text-right boxDynMenuContainer">
-            <div class="boxDynMenu">
-              <div>
-                <div class="ecd-pink-bg">Nous confier un besoin en recrutement</div>
-                <div class="ecd-gray-bg">Nous confier votre carrière</div>
-              </div>
-              <div>
-                <div class="ecd-gray-bg">La lettre d’Ellen</div>
-                <div class="ecd-black-bg">Nous contacter</div>
-              </div>
-            </div>
+			<form id="contactLinkForm" action="<?php echo hook('path_root').hook('search_theme_route_by_id', array('pages', 16)); ?>" method="POST">
+				<div class="boxDynMenu">
+				  <div>
+					<div class="ecd-pink-bg contactLinkToRecrutment esc-practice-<?php echo $post->getId(); ?>-bg">
+					<?php if ($post->getId() == 3) { echo 'Nous confier une mission de chasse'; } else { echo 'Nous confier un besoin en recrutement'; } ?>
+					</div>
+					<div class="ecd-gray-bg contactLinkToCandidate">Nous confier votre carrière</div>
+				  </div>
+				  <div>
+					<div class="ecd-gray-bg contactLinkToBlog" data-action="<?php echo hook('path_root').hook('search_theme_route_by_id', array('pages', 18)); ?>">La lettre d’Ellen</div>
+					<div class="ecd-black-bg contactLinkBlank">Nous contacter</div>
+				  </div>
+				</div>
+				<input type="text" class="hide" name="smcMethod" value=""/>
+			</form>
           </div>
         </div>
       </div>
+      
     </div>
   </div>
 

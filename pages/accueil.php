@@ -1,5 +1,11 @@
+<span id="home"></span>
 <?php include 'smarthome.php'; ?>
 <?php include 'ellensvideo.php'; ?>
-<?php include 'aboutellen.php'; ?>
-<?php include 'actucareer.php'; ?>
+<?php
+if(isset($_GET['debug'])) {
+	include 'aboutellen.php';
+	include 'actucareer.php';
+}
+?>
+<?php include 'ellenbook.php'; ?>
 <?php include 'smartcontact.php'; ?>
